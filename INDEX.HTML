@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CellStart | ChronoNAD+ | Unlock Your Potential</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #00215c;
+            --secondary: #0057a6;
+            --accent: #4a90e2;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #00215c 0%, #0057a6 100%);
+            --gradient-light: linear-gradient(135deg, #4a90e2 0%, #8bb8ff 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 33, 92, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 33, 92, 0.3);
+            background: var(--gradient-light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,165.3C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            animation: wave 10s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-30px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero h1, .hero p {
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background-color: var(--light);
+        }
+        
+        .benefits-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .benefits-chart {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .chart-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .bar-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .bar-label {
+            width: 200px;
+            font-weight: 600;
+        }
+        
+        .bar {
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            color: white;
+            font-weight: 600;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .bar-nad {
+            background: var(--secondary);
+            width: 0; /* Will be animated */
+        }
+        
+        .bar-nad-res {
+            background: var(--primary);
+            width: 0; /* Will be animated */
+        }
+        
+        .benefits-text {
+            flex: 1;
+        }
+        
+        .source {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+        
+        /* Features Section */
+        .features {
+            background: white;
+        }
+        
+        .features-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-cta .btn {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-cta .btn:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .benefits-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-cta .btn {
+                width: 200px;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in">
+                    <h1>Unlock Your Potential</h1>
+                    <p>The key to a more vibrant you lies in your cells.</p>
+                    <a href="#features" class="btn">Fuel My Cells</a>
+                </div>
+                <div class="hero-image fade-in">
+                    <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Bottle Shape -->
+                        <rect x="110" y="50" width="80" height="200" rx="10" fill="#00215c" opacity="0.8"/>
+                        <rect x="115" y="55" width="70" height="190" rx="5" fill="white" opacity="0.9"/>
+                        
+                        <!-- Bottle Neck -->
+                        <rect x="125" y="40" width="50" height="15" rx="5" fill="#00215c" opacity="0.8"/>
+                        
+                        <!-- Bottle Cap -->
+                        <rect x="130" y="30" width="40" height="10" rx="3" fill="#0057a6"/>
+                        
+                        <!-- Liquid Content -->
+                        <rect x="120" y="120" width="60" height="80" rx="5" fill="#4a90e2" opacity="0.7"/>
+                        
+                        <!-- Label -->
+                        <rect x="120" y="80" width="60" height="30" rx="3" fill="#00215c"/>
+                        <text x="150" y="98" text-anchor="middle" fill="white" font-family="Poppins" font-size="10" font-weight="bold">ChronoNAD+</text>
+                        
+                        <!-- Shine Effect -->
+                        <path d="M120 55 L135 55 L125 75 Z" fill="white" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="benefits-content">
+                <div class="benefits-chart fade-in">
+                    <h3 class="chart-title">The 1.7x Advantage</h3>
+                    <div class="chart-bars">
+                        <div class="bar-container">
+                            <div class="bar-label">NAD+ Alone</div>
+                            <div class="bar bar-nad" style="width: 100%">100%</div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-label">NAD+ with Resveratrol</div>
+                            <div class="bar bar-nad-res" style="width: 180%">180%</div>
+                        </div>
+                    </div>
+                    <p class="source">Source: Jiang et al., Pharmacology Research & Perspectives, 2022</p>
+                </div>
+                <div class="benefits-text fade-in">
+                    <h2>Enhanced Cellular Energy</h2>
+                    <p>Research shows that combining NAD+ with Resveratrol can boost NAD+ levels in our body up to 1.7x higher than using NAD+ alone.</p>
+                    <p>This powerful combination enhances cellular energy production, supports DNA repair mechanisms, and activates longevity genes for improved overall wellness.</p>
+                    <p>By middle age, our NAD+ levels can plummet to half of what they were in our youth. ChronoNAD+ is specifically formulated to restore these vital levels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-intro fade-in">
+                <h2>Why Is NAD+ Your Cellular Fuel?</h2>
+                <p>Restore your cellular energy and vitality to live life at your fullest.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="15" stroke="white" stroke-width="2"/>
+                            <circle cx="20" cy="20" r="8" stroke="white" stroke-width="2"/>
+                            <line x1="5" y1="20" x2="15" y2="20" stroke="white" stroke-width="2"/>
+                            <line x1="25" y1="20" x2="35" y2="20" stroke="white" stroke-width="2"/>
+                            <line x1="20" y1="5" x2="20" y2="15" stroke="white" stroke-width="2"/>
+                            <line x1="20" y1="25" x2="20" y2="35" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Enhanced Cellular Health & Defense</h3>
+                    <p>NAD+ activates important cellular defense mechanisms that help your body fight off stress and maintain overall wellness.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 5 L25 10 L35 5 L30 15 L35 20 L25 15 L20 25 L15 15 L5 20 L10 15 L5 10 L15 10 L20 5Z" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="20" cy="20" r="3" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>Activates Longevity Genes</h3>
+                    <p>Resveratrol in ChronoNAD+ works synergistically with NAD+ to activate genes associated with longevity and cellular repair.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 20 L20 5 L30 20 L25 20 L25 35 L15 35 L15 20 Z" stroke="white" stroke-width="2" fill="none"/>
+                            <polyline points="12,12 20,5 28,12" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Boosts NAD+ Function</h3>
+                    <p>Our unique formulation enhances NAD+'s natural function, helping your body turn food into usable energy for every cell.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="150" height="40" viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="25" font-family="Poppins" font-size="24" font-weight="bold" fill="white">CellStart</text>
+                        <rect x="90" y="10" width="60" height="20" rx="3" fill="#0057a6"/>
+                        <text x="120" y="25" text-anchor="middle" font-family="Poppins" font-size="12" font-weight="bold" fill="white">ChronoNAD+</text>
+                    </svg>
+                </div>
+                <div class="footer-cta">
+                    <a href="#" class="btn">Shop Now</a>
+                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn">Discover The Formula</a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 CellStart. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate bars on scroll
+            const bars = document.querySelectorAll('.bar');
+            
+            // Intersection Observer for fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate bars if this is the benefits section
+                        if (entry.target.classList.contains('benefits-chart')) {
+                            setTimeout(() => {
+                                bars.forEach(bar => {
+                                    const width = bar.style.width;
+                                    bar.style.width = '0';
+                                    setTimeout(() => {
+                                        bar.style.width = width;
+                                    }, 300);
+                                });
+                            }, 500);
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
